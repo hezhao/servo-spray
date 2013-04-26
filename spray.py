@@ -16,25 +16,25 @@ auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
 class CustomStreamListener(tweepy.StreamListener):
-	def on_status(self, status):
-		# import pdb; pdb.set_trace()
-		print('@' + status.user.screen_name + ' ' + status.text)
-		tweet = '@' + status.user.screen_name + ' Fresh spray!'
-		s = servo.Servo()
-		s.run()
-		try:
-			api.update_status(tweet, status.id)
-		except Exception, e:
-			print 'Error'
-			print(str(e))
+    def on_status(self, status):
+        # import pdb; pdb.set_trace()
+        print('@' + status.user.screen_name + ' ' + status.text)
+        tweet = '@' + status.user.screen_name + ' Fresh spray!'
+        s = servo.Servo()
+        s.run()
+        try:
+            api.update_status(tweet, status.id)
+        except Exception, e:
+            print 'Error'
+            print(str(e))
 
-	def on_error(self, status_code):
-		print >> sys.stderr, 'Encountered error with status code:', status_code
-		return True # Don't kill the stream
+    def on_error(self, status_code):
+        print >> sys.stderr, 'Encountered error with status code:', status_code
+        return True # Don't kill the stream
 
-	def on_timeout(self):
-		print >> sys.stderr, 'Timeout...'
-		return True # Don't kill the stream
+    def on_timeout(self):
+        print >> sys.stderr, 'Timeout...'
+        return True # Don't kill the stream
 
 sapi = tweepy.streaming.Stream(auth, CustomStreamListener())
 sapi.filter(track=['#givemethespray'])
