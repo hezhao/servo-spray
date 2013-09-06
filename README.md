@@ -1,4 +1,4 @@
-oldspice-spray
+servo-spray
 ==============
 
 1. Install [Occidentalis v0.2](http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2) or higher. 
